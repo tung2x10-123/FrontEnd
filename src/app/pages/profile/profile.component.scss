@@ -1,0 +1,157 @@
+$primary-color: #28a745;
+$secondary-color: #6c757d;
+$text-color: #333;
+$border-color: #ddd;
+$spacing-sm: 8px;
+$spacing-md: 16px;
+$spacing-lg: 24px;
+
+.profile-container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: $spacing-lg;
+  margin-top: 80px;
+
+  h2 {
+    font-size: 1.8rem;
+    margin-bottom: $spacing-lg;
+    text-align: center;
+    color: $text-color;
+  }
+
+  .error {
+    text-align: center;
+    font-size: 1.2rem;
+    color: #dc3545;
+    padding: $spacing-md;
+    background-color: lighten(#dc3545, 40%);
+    border-radius: 4px;
+  }
+
+  .profile-content {
+    background-color: white;
+    padding: $spacing-lg;
+    border: 1px solid $border-color;
+    border-radius: 8px;
+
+    .profile-view {
+      p {
+        font-size: 1rem;
+        margin-bottom: $spacing-md;
+        color: $text-color;
+
+        strong {
+          display: inline-block;
+          width: 150px;
+        }
+      }
+
+      .edit-btn {
+        background-color: $primary-color;
+        color: white;
+        padding: $spacing-md;
+        width: 100%;
+        font-size: 1.1rem;
+
+        &:hover {
+          background-color: darken($primary-color, 10%);
+        }
+      }
+    }
+
+    .profile-edit {
+      .form-group {
+        margin-bottom: $spacing-md;
+
+        label {
+          display: block;
+          font-size: 1rem;
+          margin-bottom: $spacing-sm;
+          color: $text-color;
+        }
+
+        input {
+          width: 100%;
+          padding: $spacing-sm;
+          border: 1px solid $border-color;
+          border-radius: 4px;
+          font-size: 1rem;
+        }
+      }
+
+      .form-actions {
+        display: flex;
+        gap: $spacing-md;
+
+        .submit-btn {
+          background-color: $primary-color;
+          color: white;
+          padding: $spacing-md;
+          flex: 1;
+          font-size: 1.1rem;
+
+          &:hover {
+            background-color: darken($primary-color, 10%);
+          }
+
+          &:disabled {
+            background-color: $secondary-color;
+            cursor: not-allowed;
+          }
+        }
+
+        .cancel-btn {
+          background-color: $secondary-color;
+          color: white;
+          padding: $spacing-md;
+          flex: 1;
+          font-size: 1.1rem;
+
+          &:hover {
+            background-color: darken($secondary-color, 10%);
+          }
+
+          &:disabled {
+            background-color: lighten($secondary-color, 20%);
+            cursor: not-allowed;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .profile-container {
+    padding: $spacing-md;
+
+    h2 {
+      font-size: 1.5rem;
+    }
+
+    .profile-content {
+      .profile-view {
+        p {
+          font-size: 0.9rem;
+
+          strong {
+            width: 120px;
+          }
+        }
+      }
+
+      .profile-edit {
+        .form-group {
+          label,
+          input {
+            font-size: 0.9rem;
+          }
+        }
+
+        .form-actions {
+          flex-direction: column;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,23 @@
+<div class="register-container">
+  <h2>Đăng ký</h2>
+  <form (ngSubmit)="submitRegister()">
+    <div class="form-group">
+      <label for="username">Tên người dùng:</label>
+      <input type="text" id="username" name="username" [(ngModel)]="registerForm.username" required />
+    </div>
+    <div class="form-group">
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" [(ngModel)]="registerForm.email" required />
+    </div>
+    <div class="form-group">
+      <label for="password">Mật khẩu:</label>
+      <input type="password" id="password" name="password" [(ngModel)]="registerForm.password" required />
+    </div>
+    <button type="submit" class="submit-btn" [disabled]="isSubmitting">
+      {{ isSubmitting ? 'Đang xử lý...' : 'Đăng ký' }}
+    </button>
+  </form>
+  <p class="login-link">
+    Đã có tài khoản? <a routerLink="/login">Đăng nhập ngay</a>
+  </p>
+</div>

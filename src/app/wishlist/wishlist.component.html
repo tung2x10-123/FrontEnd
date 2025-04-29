@@ -1,0 +1,22 @@
+<div class="wishlist-container">
+  <h2>Danh sách yêu thích</h2>
+  <div class="wishlist-grid" *ngIf="wishlist.length > 0; else emptyWishlist">
+    <div class="wishlist-item" *ngFor="let product of wishlist">
+      <div class="product-image">
+        <img *ngIf="product.imageUrl" [src]="product.imageUrl" [alt]="product.name" loading="lazy" />
+        <div *ngIf="!product.imageUrl" class="placeholder-image">Hình ảnh sản phẩm</div>
+      </div>
+      <div class="product-info">
+        <h3>{{ product.name }}</h3>
+        <p class="price">{{ product.price | number }} VND</p>
+        <p class="material">{{ product.material || 'Không có thông tin' }}</p>
+        <button class="add-to-cart" (click)="addToCart(product)">Thêm vào giỏ</button>
+        <button class="remove-from-wishlist" (click)="removeFromWishlist(product)">Xóa</button>
+      </div>
+    </div>
+  </div>
+  <ng-template #emptyWishlist>
+    <p class="empty-message">Danh sách yêu thích của bạn đang trống!</p>
+    <a routerLink="/">Quay lại mua sắm</a>
+  </ng-template>
+</div>

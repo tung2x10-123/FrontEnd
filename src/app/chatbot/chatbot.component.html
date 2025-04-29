@@ -1,0 +1,30 @@
+<div *ngIf="isChatVisible" class="chat-container">
+  <div class="chat-header">
+    <h3>Chat với Shop</h3>
+    <button class="close-button" (click)="toggleChat()">X</button>
+  </div>
+
+  <div class="chat-messages">
+    <div *ngFor="let message of messages" [ngClass]="message.sender === 'user' ? 'user-message' : 'bot-message'">
+      <p>{{ message.text }}</p>
+    </div>
+  </div>
+
+  <div *ngIf="errorMessage" class="alert alert-danger">
+    {{ errorMessage }}
+  </div>
+
+  <div class="chat-input">
+    <input
+      type="text"
+      [(ngModel)]="newMessage"
+      (keyup.enter)="sendMessage()"
+      placeholder="Nhập tin nhắn của bạn..."
+    />
+    <button (click)="sendMessage()">Gửi</button>
+  </div>
+</div>
+
+<div *ngIf="!isChatVisible" class="chat-toggle-button">
+  <button (click)="toggleChat()">💬</button>
+</div>

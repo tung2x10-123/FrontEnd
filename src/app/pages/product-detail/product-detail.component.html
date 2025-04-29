@@ -1,0 +1,79 @@
+<div class="product-detail-container">
+  <app-skeleton-loader *ngIf="isLoading" type="detail"></app-skeleton-loader>
+  <div *ngIf="error" class="error">{{ error }}</div>
+  <div *ngIf="!isLoading && !error && product" class="product-detail">
+    <div class="product-image">
+      <img *ngIf="product.imageUrl" [src]="product.imageUrl" alt="{{ product.name }}" (error)="onImageError($event)" loading="lazy" />
+      <div *ngIf="!product.imageUrl" class="placeholder-image">Hình ảnh sản phẩm</div>
+    </div>
+    <div class="product-info">
+      <h2 class="product-name">{{ product.name }}</h2>
+      <p class="product-price">{{ product.price | customCurrency }}</p>
+      <p class="product-description">{{ product.description }}</p>
+      <div class="product-details">
+        <p><strong>Chất liệu:</strong> {{ product.material }}</p>
+        <p><strong>Số lượng tồn:</strong> {{ product.stock }}</p>
+        <div class="form-group">
+          <label for="size">Kích cỡ:</label>
+          <select id="size" [(ngModel)]="selectedSize">
+            <option *ngFor="let size of sizes" [value]="size">{{ size }}</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="color">Màu sắc:</label>
+          <select id="color" [(ngModel)]="selectedColor">
+            <option *ngFor="let color of colors" [value]="color">{{ color }}</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="quantity">Số lượng:</label>
+          <input type="number" id="quantity" [(ngModel)]="quantity" min="1" [max]="product.stock || 10" />
+        </div>
+      </div>
+      <button class="add-to-cart" (click)="addToCart(product)" [disabled]="!selectedSize || !selectedColor || quantity < 1">
+        Thêm vào giỏ
+      </button>
+    </div>
+  </div>
+
+  <div *ngIf="!isLoading && !error && product" class="reviews-section">
+    <h3>Đánh giá sản phẩm</h3>
+    <div class="review-form">
+      <h4>Viết đánh giá của bạn</h4>
+      <form (ngSubmit)="submitReview()">
+        <div class="form-group">
+          <label for="rating">Đánh giá (1-5 sao):</label>
+          <select id="rating" [(ngModel)]="newReview.rating" name="rating">
+            <option value="1">1 sao</option>
+            <option value="2">2 sao</option>
+            <option value="3">3 sao</option>
+            <option value="4">4 sao</option>
+            <option value="5">5 sao</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="comment">Bình luận:</label>
+          <textarea id="comment" [(ngModel)]="newReview.comment" name="comment" rows="4" required></textarea>
+        </div>
+        <button type="submit" class="submit-btn" [disabled]="isSubmittingReview">
+          {{ isSubmittingReview ? 'Đang gửi...' : 'Gửi đánh giá' }}
+        </button>
+      </form>
+    </div>
+    <div class="reviews-list">
+      <div *ngIf="reviews.length === 0" class="no-reviews">Chưa có đánh giá nào.</div>
+      <div *ngFor="let review of reviews" class="review">
+        <p><strong>{{ review.user }}</strong> - {{ review.rating }} sao - {{ review.date | date:'dd/MM/yyyy HH:mm' }}</p>
+        <p>{{ review.comment }}</p>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="!isLoading && !error && product" class="related-products">
+    <h3>Sản phẩm liên quan</h3>
+    <div *ngIf="relatedProducts.length === 0" class="no-related">Không có sản phẩm liên quan.</div>
+    <div *ngIf="relatedProducts.length > 0" class="related-list">
+      <app-product-card *ngFor="let related of relatedProducts" [product]="related" @fadeInOut></app-product-card>
+    </div>
+  </div>
+</div>

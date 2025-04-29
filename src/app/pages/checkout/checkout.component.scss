@@ -1,0 +1,140 @@
+$primary-color: #28a745;
+$success-color: #28a745;
+$text-color: #333;
+$border-color: #ddd;
+$spacing-sm: 8px;
+$spacing-md: 16px;
+$spacing-lg: 24px;
+
+.checkout-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: $spacing-lg;
+  margin-top: 80px;
+
+  h2 {
+    font-size: 1.8rem;
+    margin-bottom: $spacing-lg;
+    text-align: center;
+    color: $text-color;
+  }
+
+  .cart-summary {
+    margin-bottom: $spacing-lg;
+
+    h3 {
+      font-size: 1.4rem;
+      margin-bottom: $spacing-md;
+      color: $text-color;
+    }
+
+    .cart-items {
+      list-style: none;
+
+      .cart-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: $spacing-md;
+        border-bottom: 1px solid $border-color;
+        margin-bottom: $spacing-md;
+
+        .item-name {
+          font-size: 1.1rem;
+          color: $text-color;
+        }
+
+        .item-price {
+          font-size: 1rem;
+          font-weight: bold;
+          color: $primary-color;
+        }
+      }
+    }
+
+    .cart-total {
+      text-align: right;
+      font-size: 1.2rem;
+      margin-top: $spacing-md;
+      color: $text-color;
+    }
+  }
+
+  .checkout-form {
+    h3 {
+      font-size: 1.4rem;
+      margin-bottom: $spacing-md;
+      color: $text-color;
+    }
+
+    .form-group {
+      margin-bottom: $spacing-md;
+
+      label {
+        display: block;
+        font-size: 1rem;
+        margin-bottom: $spacing-sm;
+        color: $text-color;
+      }
+
+      input {
+        width: 100%;
+        padding: $spacing-sm;
+        border: 1px solid $border-color;
+        border-radius: 4px;
+        font-size: 1rem;
+      }
+    }
+
+    .submit-btn {
+      background-color: $success-color;
+      color: white;
+      width: 100%;
+      padding: $spacing-md;
+      font-size: 1.1rem;
+
+      &:hover {
+        background-color: darken($success-color, 10%);
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .checkout-container {
+    padding: $spacing-md;
+
+    h2 {
+      font-size: 1.5rem;
+    }
+
+    .cart-summary {
+      h3 {
+        font-size: 1.2rem;
+      }
+
+      .cart-items {
+        .cart-item {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: $spacing-sm;
+
+          .item-name,
+          .item-price {
+            font-size: 0.9rem;
+          }
+        }
+      }
+
+      .cart-total {
+        font-size: 1rem;
+      }
+    }
+
+    .checkout-form {
+      h3 {
+        font-size: 1.2rem;
+      }
+    }
+  }
+}

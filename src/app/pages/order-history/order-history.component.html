@@ -1,0 +1,26 @@
+<div class="order-history-container">
+  <h2>Lịch sử đơn hàng</h2>
+  <app-loading-spinner *ngIf="isLoading"></app-loading-spinner>
+  <div *ngIf="error" class="error">{{ error }}</div>
+  <div *ngIf="!isLoading && !error">
+    <div *ngIf="orders.length === 0" class="no-orders">Bạn chưa có đơn hàng nào.</div>
+    <div *ngFor="let order of orders; let i = index" class="order">
+      <h3>Đơn hàng #{{ i + 1 }} - {{ order.orderDate | date:'dd/MM/yyyy HH:mm' }}</h3>
+      <p><strong>Họ và tên:</strong> {{ order.customerName || 'Không có thông tin' }}</p>
+      <p><strong>Địa chỉ:</strong> {{ order.customerAddress || 'Không có thông tin' }}</p>
+      <p><strong>Số điện thoại:</strong> {{ order.customerPhone || 'Không có thông tin' }}</p>
+      <ul class="order-items" *ngIf="order.items.length > 0; else noItems">
+        <li *ngFor="let item of order.items" class="order-item">
+          <span class="item-name">{{ item.product?.name || 'Không có tên' }} ({{ item.product?.category?.name || 'Không có danh mục' }}) (x{{ item.quantity }})</span>
+          <span class="item-price">{{ (item.product?.price || 0) * item.quantity | customCurrency }}</span>
+        </li>
+      </ul>
+      <ng-template #noItems>
+        <p class="no-items">Không có sản phẩm hợp lệ trong đơn hàng này.</p>
+      </ng-template>
+      <div class="order-total">
+        <strong>Tổng tiền:</strong> {{ order.totalPrice | customCurrency }}
+      </div>
+    </div>
+  </div>
+</div>

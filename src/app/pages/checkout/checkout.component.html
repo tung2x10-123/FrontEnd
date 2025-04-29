@@ -1,0 +1,41 @@
+<div class="checkout-container">
+  <h2>Thanh Toán</h2>
+
+  <div class="cart-summary">
+    <h3>Sản phẩm trong giỏ hàng</h3>
+    <ul class="cart-items">
+      <li *ngFor="let item of cartItems" class="cart-item">
+        <span class="item-name">{{ item.product.name }} ({{ item.product.category.name }}) (x{{ item.quantity }})</span>
+        <span class="item-price">{{ item.product.price * item.quantity | customCurrency }}</span>
+      </li>
+    </ul>
+    <div class="cart-total">
+      <strong>Tổng tiền:</strong> {{ total | customCurrency }}
+    </div>
+  </div>
+
+  <div class="checkout-form">
+    <h3>Thông tin thanh toán</h3>
+    <form (ngSubmit)="submitCheckout()">
+      <div class="form-group">
+        <label for="name">Họ và tên:</label>
+        <input type="text" id="name" name="name" [(ngModel)]="checkoutForm.name" required />
+      </div>
+      <div class="form-group">
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" [(ngModel)]="checkoutForm.email" required />
+      </div>
+      <div class="form-group">
+        <label for="address">Địa chỉ:</label>
+        <input type="text" id="address" name="address" [(ngModel)]="checkoutForm.address" required />
+      </div>
+      <div class="form-group">
+        <label for="phone">Số điện thoại:</label>
+        <input type="text" id="phone" name="phone" [(ngModel)]="checkoutForm.phone" required />
+      </div>
+      <button type="submit" class="submit-btn" [disabled]="isSubmitting">
+        {{ isSubmitting ? 'Đang xử lý...' : 'Xác nhận thanh toán' }}
+      </button>
+    </form>
+  </div>
+</div>

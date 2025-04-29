@@ -1,0 +1,10 @@
+<div class="skeleton-loader" [ngClass]="type">
+  <div class="skeleton-image"></div>
+  <div class="skeleton-content">
+    <div class="skeleton-title"></div>
+    <div class="skeleton-price"></div>
+    <div class="skeleton-description" *ngIf="type === 'card'"></div>
+    <div class="skeleton-description-long" *ngIf="type === 'detail'"></div>
+    <div class="skeleton-button" *ngIf="type === 'detail'"></div>
+  </div>
+</div>

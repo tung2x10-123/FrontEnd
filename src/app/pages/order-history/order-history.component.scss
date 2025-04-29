@@ -1,0 +1,135 @@
+// order-history.component.scss
+.order-history-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 30px;
+  background: rgba(30, 30, 46, 0.9); // xám đậm trong suốt nhẹ
+  border-radius: 12px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.5); // shadow tối
+  font-family: 'Poppins', sans-serif;
+
+  h2 {
+    text-align: center;
+    color: #b19cd9; // tím nhạt pastel
+    font-size: 2rem;
+    font-weight: 600;
+    margin-bottom: 30px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-shadow: 0 0 5px rgba(177, 156, 217, 0.3); // glow nhẹ
+  }
+
+  .error {
+    color: #ff8787; // đỏ nhạt
+    text-align: center;
+    padding: 12px;
+    background-color: rgba(50, 20, 20, 0.8);
+    border: 1px solid #ff8787;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    font-size: 1rem;
+  }
+
+  .no-orders {
+    text-align: center;
+    color: #888; // xám nhạt
+    font-style: italic;
+    font-size: 1.1rem;
+    padding: 20px;
+    background-color: rgba(40, 40, 40, 0.8);
+    border: 1px solid #444;
+    border-radius: 8px;
+  }
+
+  .order {
+    background: rgba(40, 40, 60, 0.9); // xám đậm trong suốt nhẹ
+    border: 2px solid #81cffa; // xanh mint nhạt
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 0 10px rgba(129, 207, 250, 0.2); // glow xanh mint nhẹ
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+    &:hover {
+      transform: translateY(-3px); // nhấc lên nhẹ
+      box-shadow: 0 0 20px rgba(129, 207, 250, 0.4); // glow mạnh hơn
+    }
+
+    h3 {
+      color: #f4e1a3; // vàng nhạt pastel
+      font-size: 1.4rem;
+      font-weight: 500;
+      margin-bottom: 15px;
+      border-bottom: 1px solid #f4e1a3;
+      padding-bottom: 5px;
+    }
+
+    p {
+      margin: 8px 0;
+      color: #ccc; // xám nhạt
+      font-size: 0.95rem;
+
+      strong {
+        color: #b19cd9; // tím nhạt pastel
+        font-weight: 600;
+      }
+    }
+
+    .order-items {
+      list-style: none;
+      padding: 0;
+      margin: 15px 0;
+
+      .order-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 12px;
+        background-color: rgba(50, 50, 70, 0.8); // xám đậm hơn
+        border: 1px solid #444;
+        border-radius: 8px;
+        margin-bottom: 10px;
+        transition: background-color 0.3s ease, border-color 0.3s ease;
+
+        &:hover {
+          background-color: rgba(60, 60, 80, 0.8);
+          border-color: #81cffa; // viền xanh mint khi hover
+        }
+
+        .item-name {
+          color: #a3bffa; // xanh tím nhạt pastel
+          font-weight: 500;
+          font-size: 0.9rem;
+        }
+
+        .item-price {
+          color: #f4e1a3; // vàng nhạt pastel
+          font-weight: 600;
+          font-size: 0.9rem;
+        }
+      }
+    }
+
+    .no-items {
+      color: #ff8787; // đỏ nhạt
+      font-style: italic;
+      text-align: center;
+      padding: 10px;
+      background-color: rgba(50, 20, 20, 0.8);
+      border: 1px solid #ff8787;
+      border-radius: 8px;
+      font-size: 0.9rem;
+    }
+
+    .order-total {
+      text-align: right;
+      font-size: 1.1rem;
+      color: #ccc;
+
+      strong {
+        color: #b19cd9; // tím nhạt pastel
+        font-weight: 600;
+      }
+    }
+  }
+}

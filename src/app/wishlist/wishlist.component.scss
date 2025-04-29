@@ -1,0 +1,161 @@
+.wishlist-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+
+  h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+  }
+}
+
+.wishlist-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.wishlist-item {
+  display: flex;
+  gap: 15px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background: #fff;
+
+  .product-image {
+    img {
+      width: 100px;
+      height: 100px;
+      object-fit: cover;
+      border-radius: 8px;
+    }
+
+    .placeholder-image {
+      width: 100px;
+      height: 100px;
+      background-color: #ddd;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #666;
+      font-size: 0.9rem;
+      border-radius: 8px;
+    }
+  }
+
+  .product-info {
+    flex: 1;
+
+    h3 {
+      font-size: 16px;
+      margin: 0 0 5px;
+    }
+
+    .price {
+      font-size: 14px;
+      font-weight: bold;
+      color: #333;
+      margin: 5px 0;
+    }
+
+    .material {
+      font-size: 12px;
+      color: #888;
+      margin: 5px 0;
+    }
+
+    .add-to-cart {
+      background: #28a745;
+      color: white;
+      padding: 8px 16px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-right: 5px;
+      transition: background 0.3s ease;
+
+      &:hover {
+        background: #218838;
+      }
+    }
+
+    .remove-from-wishlist {
+      background: #ff4444;
+      color: white;
+      padding: 8px 16px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+
+      &:hover {
+        background: #cc0000;
+      }
+    }
+  }
+}
+
+.empty-message {
+  text-align: center;
+  font-size: 16px;
+  color: #666;
+  margin: 20px 0;
+}
+
+a {
+  display: block;
+  text-align: center;
+  color: #007bff;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+@media (max-width: 768px) {
+  .wishlist-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .wishlist-item {
+    flex-direction: column;
+    align-items: center;
+
+    .product-image {
+      img {
+        width: 150px;
+        height: 150px;
+      }
+
+      .placeholder-image {
+        width: 150px;
+        height: 150px;
+      }
+    }
+
+    .product-info {
+      text-align: center;
+
+      h3 {
+        font-size: 14px;
+      }
+
+      .price {
+        font-size: 12px;
+      }
+
+      .material {
+        font-size: 10px;
+      }
+
+      .add-to-cart,
+      .remove-from-wishlist {
+        padding: 6px 12px;
+        font-size: 12px;
+      }
+    }
+  }
+}

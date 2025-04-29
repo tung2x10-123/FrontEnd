@@ -1,0 +1,71 @@
+$primary-color: #28a745;
+$text-color: #333;
+$border-color: #ddd;
+$spacing-sm: 8px;
+$spacing-md: 16px;
+$spacing-lg: 24px;
+
+.register-container {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: $spacing-lg;
+  margin-top: 80px;
+
+  h2 {
+    font-size: 1.8rem;
+    margin-bottom: $spacing-lg;
+    text-align: center;
+    color: $text-color;
+  }
+
+  .form-group {
+    margin-bottom: $spacing-md;
+
+    label {
+      display: block;
+      font-size: 1rem;
+      margin-bottom: $spacing-sm;
+      color: $text-color;
+    }
+
+    input {
+      width: 100%;
+      padding: $spacing-sm;
+      border: 1px solid $border-color;
+      border-radius: 4px;
+      font-size: 1rem;
+    }
+  }
+
+  .submit-btn {
+    background-color: $primary-color;
+    color: white;
+    width: 100%;
+    padding: $spacing-md;
+    font-size: 1.1rem;
+
+    &:hover {
+      background-color: darken($primary-color, 10%);
+    }
+
+    &:disabled {
+      background-color: #6c757d;
+      cursor: not-allowed;
+    }
+  }
+
+  .login-link {
+    text-align: center;
+    margin-top: $spacing-md;
+    font-size: 0.9rem;
+
+    a {
+      color: $primary-color;
+      text-decoration: underline;
+
+      &:hover {
+        color: darken($primary-color, 10%);
+      }
+    }
+  }
+}

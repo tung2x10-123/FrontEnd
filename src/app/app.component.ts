@@ -1,12 +1,13 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { NavbarComponent } from './components/navbar/navbar.component';
+import {ChatbotComponent} from './chatbot/chatbot.component';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  standalone: true,
+  imports: [RouterOutlet, NavbarComponent, ChatbotComponent],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.scss'
+  styles: []
 })
-export class AppComponent {
-  title = 'clothing-store';
-}
+export class AppComponent {}

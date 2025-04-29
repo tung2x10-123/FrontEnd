@@ -1,0 +1,128 @@
+// định nghĩa biến màu sắc và khoảng cách
+$primary-color: #000000; // đen chủ đạo
+$secondary-color: #ffffff; // trắng cho chữ và nền
+$accent-color: #b0b0b0; // xám nhạt cho các chi tiết phụ
+$text-color: #ffffff; // chữ trắng trên nền đen
+$hover-color: #333333; // đen nhạt hơn khi hover
+$spacing-sm: 8px;
+$spacing-md: 16px;
+
+.navbar {
+  background-color: $primary-color;
+  box-shadow: 0 2px 10px rgba(255, 255, 255, 0.1); // bóng nhẹ với tông trắng để nổi trên nền đen
+  padding: $spacing-md;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky; // giữ navbar cố định khi cuộn
+  top: 0;
+  z-index: 1000;
+
+  .navbar-brand {
+    a {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: $secondary-color;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      transition: color 0.3s ease;
+
+      &:hover {
+        color: $accent-color;
+      }
+    }
+  }
+
+  .navbar-links {
+    list-style: none;
+    display: flex;
+    gap: $spacing-md;
+    margin: 0;
+
+    li {
+      a {
+        font-size: 1rem;
+        color: $text-color;
+        padding: $spacing-sm $spacing-md;
+        transition: background-color 0.3s ease, color 0.3s ease;
+        border-radius: 4px;
+
+        &.active {
+          background-color: $hover-color;
+          color: $secondary-color;
+          font-weight: 600;
+        }
+
+        &:hover {
+          background-color: $hover-color;
+          color: $secondary-color;
+        }
+
+        .cart-count {
+          background-color: $accent-color;
+          color: $primary-color;
+          border-radius: 50%;
+          padding: 2px 6px;
+          font-size: 0.8rem;
+          margin-left: $spacing-sm;
+          font-weight: 600;
+        }
+      }
+
+      &.user-info {
+        display: flex;
+        align-items: center;
+        gap: $spacing-sm;
+
+        span {
+          font-size: 1rem;
+          color: $text-color;
+        }
+
+        .logout-link {
+          cursor: pointer;
+          color: $accent-color;
+          padding: $spacing-sm $spacing-md;
+          border-radius: 4px;
+          transition: background-color 0.3s ease, color 0.3s ease;
+
+          &:hover {
+            background-color: $hover-color;
+            color: $secondary-color;
+          }
+        }
+      }
+    }
+  }
+
+  // responsive cho mobile
+  @media (max-width: 768px) {
+    flex-direction: column;
+    gap: $spacing-md;
+    padding: $spacing-sm;
+
+    .navbar-brand {
+      a {
+        font-size: 1.4rem;
+      }
+    }
+
+    .navbar-links {
+      flex-direction: column;
+      align-items: center;
+      gap: $spacing-sm;
+
+      li {
+        a {
+          font-size: 0.9rem;
+          padding: $spacing-sm;
+        }
+
+        &.user-info {
+          flex-direction: column;
+          gap: $spacing-sm;
+        }
+      }
+    }
+  }
+}

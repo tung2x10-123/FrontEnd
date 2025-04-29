@@ -1,0 +1,75 @@
+<div class="home-container">
+  <div class="category-sidebar">
+    <h3>Danh mục</h3>
+    <ul>
+      <li
+        (click)="selectedCategory = null; onCategoryChange()"
+        [class.active]="selectedCategory === null"
+      >
+        Tất cả danh mục
+      </li>
+      <li
+        *ngFor="let category of categories"
+        (click)="selectedCategory = category.id; onCategoryChange()"
+        [class.active]="selectedCategory === category.id"
+      >
+        {{ category.name }}
+      </li>
+    </ul>
+  </div>
+
+  <div class="content">
+    <div class="filters">
+      <div class="search-bar">
+        <input
+          type="text"
+          placeholder="Tìm kiếm..."
+          [(ngModel)]="searchTerm"
+          (ngModelChange)="onSearchChange()"
+        />
+      </div>
+      <div class="price-filter">
+        <input
+          type="number"
+          placeholder="Giá tối thiểu"
+          [(ngModel)]="minPrice"
+          (ngModelChange)="onPriceChange()"
+        />
+        <input
+          type="number"
+          placeholder="Giá tối đa"
+          [(ngModel)]="maxPrice"
+          (ngModelChange)="onPriceChange()"
+        />
+      </div>
+      <div class="sort-filter">
+        <select [(ngModel)]="sortBy" (ngModelChange)="onSortChange()">
+          <option value="name">Sắp xếp theo tên</option>
+          <option value="price">Sắp xếp theo giá</option>
+        </select>
+        <select [(ngModel)]="sortOrder" (ngModelChange)="onSortChange()">
+          <option value="asc">Tăng dần</option>
+          <option value="desc">Giảm dần</option>
+        </select>
+      </div>
+    </div>
+
+    <div *ngIf="isLoading" class="product-list">
+      <app-skeleton-loader *ngFor="let _ of [1, 2, 3, 4]" type="card"></app-skeleton-loader>
+    </div>
+    <div *ngIf="error" class="error">{{ error }}</div>
+    <div *ngIf="!isLoading && !error" class="product-list">
+      <app-product-card
+        *ngFor="let product of filteredProducts"
+        [product]="product"
+        @fadeInOut
+      ></app-product-card>
+    </div>
+
+    <div class="pagination" *ngIf="!isLoading && !error">
+      <button (click)="goToPage(currentPage - 1)" [disabled]="currentPage === 1">Trước</button>
+      <span>Trang {{ currentPage }} / {{ totalPages }}</span>
+      <button (click)="goToPage(currentPage + 1)" [disabled]="currentPage === totalPages">Sau</button>
+    </div>
+  </div>
+</div>
