@@ -2,13 +2,14 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
+import {environment} from '../environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ChatbotService {
-  private apiUrl = 'http://localhost:8080/api/chatbot/message';
-
+  // private apiUrl = 'http://localhost:8080/api/chatbot/message';
+  private apiUrl = environment.apiUrl + "/chatbot/message";
   constructor(private http: HttpClient) {}
 
   sendMessage(chatId: string, message: string): Observable<string> {
