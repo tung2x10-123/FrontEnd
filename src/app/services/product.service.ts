@@ -4,12 +4,14 @@ import { Observable, of } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { Product, Category, Review } from '../models/product.model';
 import { AuthService } from './auth.service';
+import { environment } from '../environment'
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductService {
-  private apiUrl = 'http://localhost:8080/api'; // Thay bằng URL backend thật
+  // private apiUrl = 'http://localhost:8080/api'; // Thay bằng URL backend thật
+  private apiUrl = environment.apiUrl;
   private productsCache: { [key: string]: Product[] } = {};
   private categoriesCache: Category[] | null = null;
 

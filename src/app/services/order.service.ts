@@ -3,12 +3,14 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { AuthService } from './auth.service';
 import { Order } from '../models/order'; // Import interface Order
+import { environment } from '../environment'
 
 @Injectable({
   providedIn: 'root'
 })
 export class OrderService {
-  private apiUrl = 'http://localhost:8080/api'; // Thay bằng URL backend thật
+  // private apiUrl = 'http://localhost:8080/api'; // Thay bằng URL backend thật
+  private apiUrl = environment.apiUrl;
 
   constructor(
     private http: HttpClient,

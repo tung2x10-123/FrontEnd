@@ -5,12 +5,14 @@ import { tap, catchError } from 'rxjs/operators';
 import { throwError } from 'rxjs';
 import { User, AuthResponse } from '../models/user.model';
 import { Router } from '@angular/router'; // thêm router để redirect
+import { environment } from '../environment'
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  private apiUrl = 'http://localhost:8080/api';
+  // private apiUrl = 'http://localhost:8080/api';
+  private apiUrl = environment.apiUrl;
   private currentUserSubject = new BehaviorSubject<User | null>(null);
   public currentUser$ = this.currentUserSubject.asObservable();
 
