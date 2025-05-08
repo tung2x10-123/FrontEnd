@@ -3,10 +3,19 @@
 
   <div class="cart-summary">
     <h3>Sản phẩm trong giỏ hàng</h3>
-    <ul class="cart-items">
+    <div *ngIf="cartItems.length === 0" class="empty-cart">
+      Giỏ hàng trống! <a routerLink="/">Mua sắm ngay</a>
+    </div>
+    <ul *ngIf="cartItems.length > 0" class="cart-items">
       <li *ngFor="let item of cartItems" class="cart-item">
-        <span class="item-name">{{ item.product.name }} ({{ item.product.category.name }}) (x{{ item.quantity }})</span>
-        <span class="item-price">{{ item.product.price * item.quantity | customCurrency }}</span>
+        <span class="item-name">
+          {{ item?.product?.name || 'Sản phẩm không xác định' }}
+          ({{ item?.product?.category?.name || 'Không có danh mục' }})
+          (x{{ item?.quantity || 0 }})
+        </span>
+        <span class="item-price">
+          {{ (item?.product?.price || 0) * (item?.quantity || 0) | customCurrency }}
+        </span>
       </li>
     </ul>
     <div class="cart-total">

@@ -17,7 +17,15 @@ export class OrderService {
     private authService: AuthService
   ) {}
 
-  createOrder(order: Order): Observable<any> {
+  createOrder(order: {
+    customerName: string | null;
+    customerAddress: string | null;
+    customerPhone: string | null;
+    email: string | null;
+    orderDate: string;
+    totalPrice: number;
+    items: { productId: number; quantity: number }[]
+  }): Observable<any> {
     const token = this.authService.getToken();
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${token}`
