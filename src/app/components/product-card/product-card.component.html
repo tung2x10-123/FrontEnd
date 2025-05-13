@@ -8,7 +8,7 @@
       <a [routerLink]="['/product', product.id]">{{ product.name }}</a>
     </h3>
     <p class="product-price">{{ product.price | customCurrency }}</p>
-    <p class="product-description">{{ product.description }}</p>
+<!--    <p class="product-description">{{ product.description }}</p>-->
     <div class="button-group">
       <button class="add-to-wishlist" (click)="toggleWishlist(product)">
         {{ isInWishlist ? 'Đã yêu thích' : 'Yêu thích' }}

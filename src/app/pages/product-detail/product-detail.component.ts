@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { ProductService } from '../../services/product.service';
 import { SeoService } from '../../services/seo.service';
 import { Product } from '../../models/product.model';
@@ -36,7 +37,7 @@ import { trigger, transition, style, animate } from '@angular/animations';
     ]),
   ],
 })
-export class ProductDetailComponent implements OnInit {
+export class ProductDetailComponent implements OnInit, OnDestroy {
   product: Product | null = null;
   isLoading = true;
   error: string | null = null;
@@ -46,6 +47,7 @@ export class ProductDetailComponent implements OnInit {
   selectedSize: string = '';
   selectedColor: string = '';
   quantity: number = 1;
+  private routeSub: Subscription | null = null;
 
   constructor(
     private route: ActivatedRoute,
@@ -56,23 +58,34 @@ export class ProductDetailComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    const productId = this.route.snapshot.paramMap.get('id');
-    if (productId) {
-      this.loadProduct(+productId);
-    } else {
-      this.error = 'Không tìm thấy sản phẩm';
-      this.isLoading = false;
+    this.routeSub = this.route.params.subscribe(params => {
+      const productId = params['id'];
+      if (productId) {
+        this.loadProduct(+productId);
+      } else {
+        this.error = 'Không tìm thấy sản phẩm';
+        this.isLoading = false;
+      }
+    });
+  }
+
+  ngOnDestroy(): void {
+    if (this.routeSub) {
+      this.routeSub.unsubscribe();
     }
   }
 
   loadProduct(id: number): void {
+    this.isLoading = true;
+    this.product = null;
+    this.relatedProducts = [];
     this.productService.getProductById(id).subscribe({
       next: (product) => {
         this.product = product;
         this.isLoading = false;
-        console.log('Sản phẩm từ API:', product); // Log toàn bộ product
-        console.log('Category:', product.category); // Log category
-        if (product && product.category && product.category.name) {
+        console.log('Sản phẩm từ API:', product);
+        console.log('Category:', product.category);
+        if (product && product.category && product.category.name && product.category.id) {
           this.seoService.setTitle(`${product.name} - ToxicFitShop`);
           this.seoService.setMetaDescription(product.description);
           this.seoService.setMetaKeywords(`${product.name}, ${product.category.name}, ToxicFitShop`);
@@ -80,8 +93,8 @@ export class ProductDetailComponent implements OnInit {
           this.selectedColor = this.colors[0];
           this.loadRelatedProducts(product.category.id);
         } else {
-          this.error = 'Sản phẩm không có thông tin category';
-          console.error('Product category is missing:', product);
+          this.error = 'Sản phẩm không có thông tin category hợp lệ';
+          console.error('Product category is missing or invalid:', product);
         }
       },
       error: (err) => {
@@ -93,16 +106,16 @@ export class ProductDetailComponent implements OnInit {
   }
 
   loadRelatedProducts(categoryId: number): void {
-    console.log('Category ID:', categoryId); // Log categoryId
-    console.log('Product ID hiện tại:', this.product?.id); // Log productId
+    console.log('Category ID:', categoryId);
+    console.log('Product ID hiện tại:', this.product?.id);
     if (categoryId) {
       this.productService.getProducts(1, 10, undefined, categoryId).subscribe({
         next: (products) => {
-          console.log('Danh sách sản phẩm từ API:', products); // Log dữ liệu API
+          console.log('Danh sách sản phẩm từ API:', products);
           if (products && products.length > 0) {
             this.relatedProducts = products
-              .filter((p) => p.id !== this.product?.id) // Loại bỏ sản phẩm hiện tại
-              .slice(0, 4); // Lấy tối đa 4 sản phẩm
+              .filter((p) => p.id !== this.product?.id)
+              .slice(0, 4);
             console.log('Sản phẩm liên quan sau filter:', this.relatedProducts);
           } else {
             this.relatedProducts = [];
