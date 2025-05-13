@@ -36,39 +36,6 @@
     </div>
   </div>
 
-  <div *ngIf="!isLoading && !error && product" class="reviews-section">
-    <h3>Đánh giá sản phẩm</h3>
-    <div class="review-form">
-      <h4>Viết đánh giá của bạn</h4>
-      <form (ngSubmit)="submitReview()">
-        <div class="form-group">
-          <label for="rating">Đánh giá (1-5 sao):</label>
-          <select id="rating" [(ngModel)]="newReview.rating" name="rating">
-            <option value="1">1 sao</option>
-            <option value="2">2 sao</option>
-            <option value="3">3 sao</option>
-            <option value="4">4 sao</option>
-            <option value="5">5 sao</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label for="comment">Bình luận:</label>
-          <textarea id="comment" [(ngModel)]="newReview.comment" name="comment" rows="4" required></textarea>
-        </div>
-        <button type="submit" class="submit-btn" [disabled]="isSubmittingReview">
-          {{ isSubmittingReview ? 'Đang gửi...' : 'Gửi đánh giá' }}
-        </button>
-      </form>
-    </div>
-    <div class="reviews-list">
-      <div *ngIf="reviews.length === 0" class="no-reviews">Chưa có đánh giá nào.</div>
-      <div *ngFor="let review of reviews" class="review">
-        <p><strong>{{ review.user }}</strong> - {{ review.rating }} sao - {{ review.date | date:'dd/MM/yyyy HH:mm' }}</p>
-        <p>{{ review.comment }}</p>
-      </div>
-    </div>
-  </div>
-
   <div *ngIf="!isLoading && !error && product" class="related-products">
     <h3>Sản phẩm liên quan</h3>
     <div *ngIf="relatedProducts.length === 0" class="no-related">Không có sản phẩm liên quan.</div>

@@ -7,6 +7,8 @@ export interface Product {
   category: Category;
   material?: string; // thêm chất liệu
   stock?: number; // thêm số lượng tồn
+  categoryId: number; // Thêm
+  categoryName: string; // Thêm
   selectedSize?: string; // thêm khi vào giỏ hàng
   selectedColor?: string; // thêm khi vào giỏ hàng
   quantity?: number; // thêm khi vào giỏ hàng
@@ -15,11 +17,4 @@ export interface Product {
 export interface Category {
   id: number;
   name: string;
-}
-
-export interface Review {
-  user: string;
-  rating: number;
-  comment: string;
-  date: string;
 }

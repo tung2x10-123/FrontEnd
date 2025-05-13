@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { tap } from 'rxjs/operators';
-import { Product, Category, Review } from '../models/product.model';
+import { Product, Category} from '../models/product.model';
 import { AuthService } from './auth.service';
 import { environment } from '../environment'
 
@@ -66,18 +66,6 @@ export class ProductService {
         this.categoriesCache = categories;
       })
     );
-  }
-
-  getReviews(productId: number): Observable<Review[]> {
-    return this.http.get<Review[]>(`${this.apiUrl}/products/${productId}/reviews`);
-  }
-
-  addReview(productId: number, review: Review): Observable<Review> {
-    const token = this.authService.getToken();
-    const headers = new HttpHeaders({
-      'Authorization': `Bearer ${token}`
-    });
-    return this.http.post<Review>(`${this.apiUrl}/products/${productId}/reviews`, review, { headers });
   }
 
   clearCache(): void {
