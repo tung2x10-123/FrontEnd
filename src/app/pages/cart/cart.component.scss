@@ -1,12 +1,21 @@
+$primary-color: #000000; // Màu đen cho nút
+$text-color: #000000; // Màu đen cho chữ
+$border-color: #ddd; // Viền xám nhạt
+$spacing-sm: 8px;
+$spacing-md: 16px;
+$spacing-lg: 24px;
+
 .cart {
-  padding: 20px;
+  padding: $spacing-lg;
   max-width: 800px;
   margin: 0 auto;
 
   h3 {
     font-size: 24px;
-    margin-bottom: 20px;
+    margin-bottom: $spacing-lg;
     text-align: center;
+    color: $text-color;
+    font-weight: bold; // Chữ GIỎ HÀNG in đậm
   }
 
   .empty {
@@ -16,94 +25,111 @@
   }
 
   .cart-items {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-  }
-
-  .cart-item {
-    display: flex;
-    align-items: center;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    padding: 10px;
-    background-color: #fff;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  }
-
-  .item-image {
-    flex: 0 0 100px;
-    img {
+    table {
       width: 100%;
-      height: auto;
-      border-radius: 4px;
-      object-fit: cover;
-    }
-  }
+      border-collapse: collapse;
 
-  .item-details {
-    flex: 1;
-    padding-left: 15px;
+      thead {
+        background-color: #f5f5f5;
 
-    h4 {
-      font-size: 18px;
-      margin: 0 0 5px;
-    }
+        th {
+          padding: $spacing-md;
+          text-align: left;
+          font-weight: bold;
+          color: $text-color;
+        }
+      }
 
-    p {
-      margin: 5px 0;
-      color: #555;
-    }
+      tbody {
+        .cart-item {
+          border-bottom: 1px solid $border-color;
 
-    .quantity {
-      display: flex;
-      align-items: center;
-      gap: 10px;
+          td {
+            padding: $spacing-md;
+            vertical-align: middle; // Căn giữa theo chiều dọc
 
-      .btn-quantity {
-        background-color: #f0f0f0;
-        border: none;
-        padding: 5px 10px;
-        cursor: pointer;
-        border-radius: 4px;
-        &:hover {
-          background-color: #ddd;
+            &.item-image {
+              display: flex;
+              align-items: center;
+              gap: $spacing-md;
+
+              img {
+                width: 100px;
+                height: auto;
+                object-fit: cover;
+              }
+
+              .item-details {
+                h4 {
+                  font-size: 18px;
+                  margin: 0 0 $spacing-sm;
+                  color: $text-color;
+                }
+
+                p {
+                  margin: $spacing-sm 0;
+                  color: #555;
+                }
+              }
+            }
+
+            &.quantity {
+              text-align: center; // Căn giữa theo chiều ngang
+
+              .btn-quantity {
+                background-color: #f0f0f0;
+                border: none;
+                padding: 5px 10px;
+                cursor: pointer;
+                border-radius: 0; // Loại bỏ bo tròn
+                display: inline-block; // Đặt nút trên cùng một hàng
+                vertical-align: middle; // Căn giữa theo chiều dọc
+
+                &:hover {
+                  background-color: #ddd;
+                }
+              }
+
+              span {
+                font-size: 16px;
+                padding: 5px 10px;
+                display: inline-block; // Đặt số trên cùng một hàng
+                vertical-align: middle; // Căn giữa theo chiều dọc
+              }
+            }
+          }
         }
       }
     }
 
-    .btn-remove {
-      background-color: #ff4d4d;
-      color: white;
-      border: none;
-      padding: 5px 10px;
-      border-radius: 4px;
-      cursor: pointer;
-      &:hover {
-        background-color: #e60000;
-      }
-    }
-  }
+    .cart-actions {
+      margin-top: $spacing-lg;
+      display: flex;
+      justify-content: flex-end;
 
-  .total {
-    text-align: right;
-    margin-top: 20px;
+      .total {
+        text-align: right;
 
-    p {
-      font-size: 18px;
-      font-weight: bold;
-      margin-bottom: 10px;
-    }
+        p {
+          font-size: 18px;
+          font-weight: bold;
+          margin-bottom: $spacing-md;
+          color: $text-color;
+        }
 
-    .btn-checkout {
-      background-color: #28a745;
-      color: white;
-      border: none;
-      padding: 10px 20px;
-      border-radius: 4px;
-      cursor: pointer;
-      &:hover {
-        background-color: #218838;
+        .btn-checkout {
+          background-color: $primary-color;
+          color: white;
+          border: none;
+          padding: $spacing-md $spacing-lg;
+          font-size: 1.1rem;
+          cursor: pointer;
+          border-radius: 0;
+
+          &:hover {
+            background-color: darken($primary-color, 10%);
+          }
+        }
       }
     }
   }

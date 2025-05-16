@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterLink } from '@angular/router';
+import { RouterLink, Router } from '@angular/router';
 import { CartService, CartItem } from '../../services/cart.service';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-cart',
   standalone: true,
-  imports: [CommonModule, RouterLink],
+  imports: [CommonModule, RouterLink], // Bỏ FormsModule vì không còn dùng ngModel
   templateUrl: './cart.component.html',
   styleUrls: ['./cart.component.scss']
 })
@@ -17,7 +17,8 @@ export class CartComponent implements OnInit {
 
   constructor(
     private cartService: CartService,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {

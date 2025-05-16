@@ -1,7 +1,7 @@
-$primary-color: #28a745;
-$success-color: #28a745;
-$text-color: #333;
-$border-color: #ddd;
+$primary-color: #000000; // Màu đen cho nút
+$success-color: #000000; // Màu đen cho nút xác nhận
+$text-color: #000000; // Màu đen cho chữ
+$border-color: #000000; // Màu đen cho viền input
 $spacing-sm: 8px;
 $spacing-md: 16px;
 $spacing-lg: 24px;
@@ -17,6 +17,7 @@ $spacing-lg: 24px;
     margin-bottom: $spacing-lg;
     text-align: center;
     color: $text-color;
+    font-weight: bold; // Chữ THANH TOÁN in đậm
   }
 
   .cart-summary {
@@ -26,6 +27,7 @@ $spacing-lg: 24px;
       font-size: 1.4rem;
       margin-bottom: $spacing-md;
       color: $text-color;
+      font-weight: bold; // Chữ in đậm
     }
 
     .cart-items {
@@ -47,7 +49,7 @@ $spacing-lg: 24px;
         .item-price {
           font-size: 1rem;
           font-weight: bold;
-          color: $primary-color;
+          color: $text-color; // Đổi thành màu đen để đồng bộ
         }
       }
     }
@@ -57,6 +59,7 @@ $spacing-lg: 24px;
       font-size: 1.2rem;
       margin-top: $spacing-md;
       color: $text-color;
+      font-weight: bold; // In đậm tổng tiền
     }
   }
 
@@ -65,6 +68,7 @@ $spacing-lg: 24px;
       font-size: 1.4rem;
       margin-bottom: $spacing-md;
       color: $text-color;
+      font-weight: bold; // Chữ in đậm
     }
 
     .form-group {
@@ -75,14 +79,18 @@ $spacing-lg: 24px;
         font-size: 1rem;
         margin-bottom: $spacing-sm;
         color: $text-color;
+        font-weight: normal; // Label không in đậm
       }
 
       input {
         width: 100%;
         padding: $spacing-sm;
         border: 1px solid $border-color;
-        border-radius: 4px;
+        border-radius: 0; // Loại bỏ bo tròn
         font-size: 1rem;
+        color: $text-color;
+        background-color: #fff; // Nền trắng
+        outline: none; // Loại bỏ viền focus
       }
     }
 
@@ -92,6 +100,9 @@ $spacing-lg: 24px;
       width: 100%;
       padding: $spacing-md;
       font-size: 1.1rem;
+      border: none;
+      border-radius: 0; // Loại bỏ bo tròn
+      cursor: pointer;
 
       &:hover {
         background-color: darken($success-color, 10%);

@@ -1,28 +1,41 @@
 <div class="cart">
-  <h3>Giỏ hàng của bạn</h3>
+  <h3>GIỎ HÀNG</h3>
   <div *ngIf="errorMessage" class="error">{{ errorMessage }}</div>
   <div *ngIf="cartItems.length === 0" class="empty">Giỏ hàng trống.</div>
   <div *ngIf="cartItems.length > 0" class="cart-items">
-    <div *ngFor="let item of cartItems" class="cart-item">
-      <div class="item-image">
-        <img *ngIf="item.product?.imageUrl" [src]="item.product.imageUrl" alt="{{ item.product?.name || 'Sản phẩm' }}" (error)="onImageError($event)">
-      </div>
-      <div class="item-details">
-        <h4>{{ item.product?.name || 'Sản phẩm không xác định' }}</h4>
-        <p>{{ item.product?.description || '' }}</p>
-        <p>Giá: {{ item.product?.price || 0 | number }} VNĐ</p>
-        <p class="quantity">
-          Số lượng:
+    <table>
+      <thead>
+      <tr>
+        <th>Sản phẩm</th>
+        <th>Giá</th>
+        <th>Số lượng</th>
+        <th>Tổng tiền</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let item of cartItems" class="cart-item">
+        <td class="item-image">
+          <img *ngIf="item.product?.imageUrl" [src]="item.product.imageUrl" alt="{{ item.product?.name || 'Sản phẩm' }}" (error)="onImageError($event)">
+          <div class="item-details">
+            <h4>{{ item.product?.name || 'Sản phẩm không xác định' }}</h4>
+            <p>{{ item.product?.description || '' }}</p>
+          </div>
+        </td>
+        <td>{{ (item.product?.price || 0) | number }} VNĐ</td>
+        <td class="quantity">
           <button class="btn-quantity" (click)="decreaseQuantity(item)">-</button>
           <span>{{ item.quantity }}</span>
           <button class="btn-quantity" (click)="increaseQuantity(item)">+</button>
-        </p>
-        <button class="btn-remove" (click)="removeFromCart(item)">Xóa</button>
+        </td>
+        <td>{{ (item.product?.price || 0) * item.quantity | number }} VNĐ</td>
+      </tr>
+      </tbody>
+    </table>
+    <div class="cart-actions">
+      <div class="total">
+        <p>Tổng cộng: {{ getTotal() | number }} VNĐ</p>
+        <button class="btn-checkout" [routerLink]="['/checkout']">TIẾP TỤC THANH TOÁN</button>
       </div>
-    </div>
-    <div class="total">
-      <p>Tổng tiền: {{ getTotal() | number }} VNĐ</p>
-      <button class="btn-checkout" [routerLink]="['/checkout']">Thanh toán</button>
     </div>
   </div>
 </div>
