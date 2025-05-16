@@ -1,0 +1,9 @@
+.app-wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; // Đảm bảo chiều cao tối thiểu là 100% viewport
+}
+
+.main-content {
+  flex: 1; // Đẩy footer xuống dưới bằng cách làm nội dung chính chiếm hết không gian còn lại
+}
