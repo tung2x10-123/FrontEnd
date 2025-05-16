@@ -7,7 +7,7 @@ $spacing-lg: 24px;
 
 .cart {
   padding: $spacing-lg;
-  max-width: 800px;
+  max-width: 1000px; // Tăng chiều rộng lên 1000px
   margin: 0 auto;
 
   h3 {
@@ -74,7 +74,7 @@ $spacing-lg: 24px;
             }
 
             &.quantity {
-              text-align: center; // Căn giữa theo chiều ngang
+              //text-align: center; // Căn giữa theo chiều ngang
 
               .btn-quantity {
                 background-color: #f0f0f0;
@@ -95,7 +95,13 @@ $spacing-lg: 24px;
                 padding: 5px 10px;
                 display: inline-block; // Đặt số trên cùng một hàng
                 vertical-align: middle; // Căn giữa theo chiều dọc
+                font-weight: bold; // Số lượng in đậm
               }
+            }
+
+            &.item-price,
+            &:last-child { // Cột tổng tiền
+              font-weight: bold; // Giá và tổng tiền in đậm
             }
           }
         }

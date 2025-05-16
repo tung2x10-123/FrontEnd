@@ -7,7 +7,7 @@ $spacing-md: 16px;
 $spacing-lg: 24px;
 
 .checkout-container {
-  max-width: 800px;
+  max-width: 800px; // Giữ nguyên 800px, không thay đổi
   margin: 0 auto;
   padding: $spacing-lg;
   margin-top: 80px;
@@ -48,8 +48,8 @@ $spacing-lg: 24px;
 
         .item-price {
           font-size: 1rem;
-          font-weight: bold;
-          color: $text-color; // Đổi thành màu đen để đồng bộ
+          font-weight: bold; // Giá in đậm
+          color: $text-color;
         }
       }
     }
@@ -59,7 +59,7 @@ $spacing-lg: 24px;
       font-size: 1.2rem;
       margin-top: $spacing-md;
       color: $text-color;
-      font-weight: bold; // In đậm tổng tiền
+      font-weight: bold; // Tổng tiền in đậm
     }
   }
 
