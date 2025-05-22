@@ -172,15 +172,24 @@ export class AuthService {
     );
   }
 
+  // resetPassword(token: string, newPassword: string): Observable<any> {
+  //   const request = {
+  //     header: { requestId: this.generateRequestId() },
+  //     body: { token, newPassword }
+  //   };
+  //   return this.http.post(`${this.apiUrl}/auth/reset-password`, request).pipe(
+  //     catchError(err => {
+  //       console.error('Failed to reset password:', err);
+  //       return throwError(() => new Error('Failed to reset password'));
+  //     })
+  //   );
+  // }
   resetPassword(token: string, newPassword: string): Observable<any> {
-    const request = {
-      header: { requestId: this.generateRequestId() },
-      body: { token, newPassword }
-    };
-    return this.http.post(`${this.apiUrl}/auth/reset-password`, request).pipe(
+    const params = { token, newPassword }; // Sử dụng params thay vì body
+    return this.http.post(`${this.apiUrl}/auth/reset-password`, null, { params }).pipe(
       catchError(err => {
         console.error('Failed to reset password:', err);
-        return throwError(() => new Error('Failed to reset password'));
+        return throwError(() => new Error(err.error?.ErrorMess || 'Failed to reset password'));
       })
     );
   }
