@@ -29,6 +29,8 @@ export class ResetPasswordComponent implements OnInit {
     if (!this.token) {
       this.toastr.error('Token không hợp lệ!', 'Lỗi');
       this.router.navigate(['/login']);
+    } else {
+      console.log('Token received:', this.token); // Kiểm tra token
     }
   }
 
