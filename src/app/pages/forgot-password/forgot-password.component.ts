@@ -30,8 +30,8 @@ export class ForgotPasswordComponent {
 
     this.isSubmitting = true;
     this.authService.forgotPassword(this.email).subscribe({
-      next: () => {
-        this.toastr.success('Yêu cầu khôi phục mật khẩu đã được gửi! Vui lòng kiểm tra email.', 'Thành công');
+      next: (response) => {
+        this.toastr.success(response.data.Result || 'Yêu cầu khôi phục mật khẩu đã được gửi!', 'Thành công');
         this.isSubmitting = false;
         this.router.navigate(['/login']);
       },

@@ -147,6 +147,18 @@ export class AuthService {
     );
   }
 
+  // forgotPassword(email: string): Observable<any> {
+  //   const request = {
+  //     header: { requestId: this.generateRequestId() },
+  //     body: { email }
+  //   };
+  //   return this.http.post(`${this.apiUrl}/auth/forgot-password`, request).pipe(
+  //     catchError(err => {
+  //       console.error('Failed to send forgot password request:', err);
+  //       return throwError(() => new Error('Failed to send forgot password request'));
+  //     })
+  //   );
+  // }
   forgotPassword(email: string): Observable<any> {
     const request = {
       header: { requestId: this.generateRequestId() },
@@ -155,7 +167,7 @@ export class AuthService {
     return this.http.post(`${this.apiUrl}/auth/forgot-password`, request).pipe(
       catchError(err => {
         console.error('Failed to send forgot password request:', err);
-        return throwError(() => new Error('Failed to send forgot password request'));
+        return throwError(() => new Error(err.error?.res_code?.error_desc || 'Failed to send forgot password request'));
       })
     );
   }
